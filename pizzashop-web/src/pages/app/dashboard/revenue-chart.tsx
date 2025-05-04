@@ -31,8 +31,8 @@ export function RevenueChart() {
     to: new Date(),
   })
 
-  const { data } = useQuery({
-    queryKey: ['metrics', 'daily-receipt-in-period'],
+  const { data: dailyRevenueInPeriod } = useQuery({
+    queryKey: ['metrics', 'daily-revenue-in-period', dateRange],
     queryFn: () =>
       getDailyRevenueInPeriod({
         from: dateRange?.from,
@@ -41,11 +41,13 @@ export function RevenueChart() {
   })
 
   const chartData = useMemo(() => {
-    return data?.map((item) => ({
-      date: item.date,
-      receipt: item.receipt / 100,
-    }))
-  }, [data])
+    return dailyRevenueInPeriod?.map((chartItem) => {
+      return {
+        date: chartItem.date,
+        receipt: chartItem.receipt / 100,
+      }
+    })
+  }, [dailyRevenueInPeriod])
 
   return (
     <Card className="col-span-6">

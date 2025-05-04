@@ -9,5 +9,5 @@ export async function getPopularProducts() {
   const response = await api.get<GetPopularProductsResponse>(
     '/metrics/popular-products'
   )
-  return response.data
+  return Array.isArray(response.data) ? response.data : []
 }

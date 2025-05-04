@@ -118,14 +118,10 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
               <TableRow>
                 <TableCell colSpan={3}>Total do pedido</TableCell>
                 <TableCell className="text-right font-medium">
-                  {order.orderItems
-                    .reduce((acc, item) => {
-                      return acc + (item.priceInCents / 100) * item.quantity
-                    }, 0)
-                    .toLocaleString('pt-BR', {
-                      style: 'currency',
-                      currency: 'BRL',
-                    })}
+                  {(order.totalInCents / 100).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
                 </TableCell>
               </TableRow>
             </TableFooter>

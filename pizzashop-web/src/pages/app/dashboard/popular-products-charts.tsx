@@ -32,11 +32,11 @@ export function PopularProductsCharts() {
         </div>
       </CardHeader>
       <CardContent>
-        {data ? (
+        {Array.isArray(data) ? (
           <ResponsiveContainer width="100%" height={240}>
             <PieChart style={{ fontSize: 12 }}>
               <Pie
-                data={data ?? []}
+                data={data}
                 dataKey="amount"
                 nameKey="product"
                 cx="50%"
